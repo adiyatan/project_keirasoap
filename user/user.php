@@ -77,7 +77,7 @@ $row_count = mysqli_num_rows($select_rows);
       color: #fff;
     }
 
-    .fas{
+    .fas {
       color: #fff;
     }
 
@@ -118,6 +118,25 @@ $row_count = mysqli_num_rows($select_rows);
 
     .navbar-white-text .navbar-nav .nav-link {
       color: white;
+    }
+
+    .scroll-to-top {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      background: #00a4a9;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 15px;
+    }
+
+    .scroll-to-top:hover {
+      background: #007982;
     }
 
     body {
@@ -265,6 +284,9 @@ $row_count = mysqli_num_rows($select_rows);
       </div>
     </div>
   </div>
+  <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">
+    <i class="fa fa-arrow-up"></i>
+  </button>
   <footer class="footer">
     <div class="container">
       <p>&copy; 2023 Keira Soap Factory</p>
@@ -275,6 +297,44 @@ $row_count = mysqli_num_rows($select_rows);
 <script>
   var id_user = <?php echo $id_user; ?>;
 </script>
+<script>
+  // Function to show the scroll-to-top button when scrolling down
+  window.onscroll = function() {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTopBtn").style.display = "block";
+    } else {
+      document.getElementById("scrollToTopBtn").style.display = "none";
+    }
+  }
+
+  // Function to smoothly scroll to the top when the button is clicked
+  document.getElementById("scrollToTopBtn").onclick = function() {
+    scrollToTop();
+  };
+
+  function scrollToTop() {
+    const duration = 500; // Scroll duration in milliseconds
+    const start = window.pageYOffset;
+    const startTime = performance.now();
+
+    function scroll(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, start - start * progress);
+
+      if (progress < 1) {
+        requestAnimationFrame(scroll);
+      }
+    }
+
+    requestAnimationFrame(scroll);
+  }
+</script>
+
 <script src="../asset/js/jquery-3.6.0.min.js"></script>
 <script src="../asset/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
