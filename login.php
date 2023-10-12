@@ -114,12 +114,12 @@ if (isset($_SESSION['login'])) {
 
     <form action="php/checkrole.php" method="post">
       <div class="form-floating mb-5">
-        <input type="text" class="form-control fs-3" id="floatingInput" placeholder="Username" name="username" required autocomplete="off">
+        <input type="text" class="form-control fs-5" id="floatingInput" placeholder="Username" name="username" required autocomplete="off">
         <label for="floatingInput">Username:</label>
       </div>
 
       <div class="form-floating mb-5">
-        <input type="password" class="form-control fs-3" id="floatingPassword" placeholder="Password" name="password" required autocomplete="off">
+        <input type="password" class="form-control fs-5" id="floatingPassword" placeholder="Password" name="password" required autocomplete="off">
         <label for="floatingPassword">Password:</label>
       </div>
 
@@ -134,7 +134,7 @@ if (isset($_SESSION['login'])) {
       </div>
       <br>
 
-      <input type="submit" class="tombol_login" name="login" value="LOGIN">
+      <input type="submit" class="tombol_login" name="login" value="Login">
       <br />
       <br />
     </form>
