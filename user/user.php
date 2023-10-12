@@ -14,6 +14,15 @@ if ($_SESSION['role'] == "") {
   header("location:../login.php?pesan=gagal");
 }
 
+// Add these lines at the beginning of your PHP code to handle sorting
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'nama_sabun';
+$order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+
+$orderBy = $sort . ' ' . $order;
+$listsabun = query("SELECT * FROM data_sabun ORDER BY $orderBy");
+
+
+
 if (isset($_POST['add_to_cart'])) {
   $product_gambar = $_POST['product_gambar'];
   $product_nama = $_POST['product_nama'];
@@ -39,6 +48,7 @@ $row_count = mysqli_num_rows($select_rows);
 <head>
   <title>Halaman User</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style>
     .header {
       background: #00a4a9;
@@ -64,6 +74,10 @@ $row_count = mysqli_num_rows($select_rows);
 
     .table th {
       background-color: #00a4a9;
+      color: #fff;
+    }
+
+    .fas{
       color: #fff;
     }
 
@@ -175,7 +189,7 @@ $row_count = mysqli_num_rows($select_rows);
           <form action="" method="post">
             <img src="../asset/img/loader.gif" class="loader">
             <div class="input-group">
-              <input type="text" name="keyword" class="form-control" placeholder="masukkan kata kunci" autocomplete="off" id="keyword">
+              <input type="text" name="keyword" class="form-control" placeholder="Masukkan kata kunci" autocomplete="off" id="keyword">
               <div class="input-group-append">
                 <button type="submit" name="cari" class="btn btn-secondary p-3" id="tombol-cari">Cari</button>
               </div>
@@ -185,40 +199,68 @@ $row_count = mysqli_num_rows($select_rows);
         </div>
       </div>
       <div id="tabel-sabun">
-        <table border="1" cellpadding="10" cellspacing="0" width="600px" class="table table-bordered table-hover table-secondary mt-4" id="daftarsabun">
-
-          <tr class="thead-dark text-center table table-dark table-striped">
-            <th>No.</th>
-            <th>Gambar</th>
-            <th>Nama Sabun</th>
-            <th>Bahan Sabun</th>
-            <th>Kegunaan Sabun</th>
-            <th>Harga</th>
-            <th>Action</th>
-          </tr>
+        <table class="table table-bordered table-hover table-secondary mt-4" id="daftarsabun">
+          <thead class="thead-dark text-center table-dark table-striped">
+            <tr>
+              <th>No.</th>
+              <th>Gambar</th>
+              <th>Nama Sabun
+                <?php if ($sort === 'nama_sabun' && $order === 'asc') : ?>
+                  <a href="?sort=nama_sabun&order=desc"><i class="fas fa-sort-down"></i></a>
+                <?php else : ?>
+                  <a href="?sort=nama_sabun&order=asc"><i class="fas fa-sort-up"></i></a>
+                <?php endif; ?>
+              </th>
+              <th>Bahan Sabun
+                <?php if ($sort === 'bahan_sabun' && $order === 'asc') : ?>
+                  <a href="?sort=bahan_sabun&order=desc"><i class="fas fa-sort-down"></i></a>
+                <?php else : ?>
+                  <a href="?sort=bahan_sabun&order=asc"><i class="fas fa-sort-up"></i></a>
+                <?php endif; ?>
+              </th>
+              <th>Kegunaan Sabun
+                <?php if ($sort === 'kegunaan_sabun' && $order === 'asc') : ?>
+                  <a href="?sort=kegunaan_sabun&order=desc"><i class="fas fa-sort-down"></i></a>
+                <?php else : ?>
+                  <a href="?sort=kegunaan_sabun&order=asc"><i class="fas fa-sort-up"></i></a>
+                <?php endif; ?>
+              </th>
+              <th style="width: 100px;">Harga
+                <?php if ($sort === 'harga_sabun' && $order === 'asc') : ?>
+                  <a href="?sort=harga_sabun&order=desc"><i class="fas fa-sort-down"></i></a>
+                <?php else : ?>
+                  <a href="?sort=harga_sabun&order=asc"><i class="fas fa-sort-up"></i></a>
+                <?php endif; ?>
+              </th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
           <?php $i = 1; ?>
           <?php foreach ($listsabun as $row) : ?>
-            <tr class="thead-dark text-center">
-              <form action="" method="post">
-                <td><?= $i; ?></td>
-                <td><input type="hidden" name="product_gambar" value="../asset/uploaded-img/<?= $row["gambar_sabun"]; ?>"><img src="../asset/uploaded-img/<?= $row["gambar_sabun"]; ?>" class="rounded foto" width="auto" height="50px"></td>
-                <td><input type="hidden" name="product_nama" value="<?= $row["nama_sabun"]; ?>"><?= $row["nama_sabun"]; ?></td>
-                <td><input type="hidden" name="product_bahan" value="<?= $row["bahan_sabun"]; ?>"><?= $row["bahan_sabun"]; ?></td>
-                <td><input type="hidden" name="product_kegunaan" value="<?= $row["kegunaan_sabun"]; ?>"><?= $row["kegunaan_sabun"]; ?></td>
-                <td><input type="hidden" name="product_harga" value="<?= $row["harga_sabun"]; ?>"><?= $row["harga_sabun"]; ?></td>
-                <td>
-
-                  <a href="detail.php?gambar=<?= $row["gambar_sabun"] ?>&product_nama=<?= $row["nama_sabun"]  ?>&product_bahan=<?= $row["bahan_sabun"] ?>&product_kegunaan=<?= $row["kegunaan_sabun"]  ?>&product_harga=<?= $row["harga_sabun"] ?>" class="btn btn-sm text-white bg-danger">Detail</a>
-                  <br>
-                  <br>
-                  <input type="submit" class="btn btn-sm bg-warning" value="add to cart" onclick="return confirm('Tambah ke keranjang?')" name="add_to_cart">
-                </td>
-              </form>
+            <tr class="text-center">
+              <td><?= $i; ?></td>
+              <td><img src="../asset/uploaded-img/<?= $row["gambar_sabun"]; ?>" class="rounded foto" width="auto" height="50px"></td>
+              <td><?= $row["nama_sabun"]; ?></td>
+              <td><?= $row["bahan_sabun"]; ?></td>
+              <td><?= $row["kegunaan_sabun"]; ?></td>
+              <td><?= $row["harga_sabun"]; ?></td>
+              <td>
+                <a href="detail.php?gambar=<?= $row["gambar_sabun"] ?>&product_nama=<?= $row["nama_sabun"]  ?>&product_bahan=<?= $row["bahan_sabun"] ?>&product_kegunaan=<?= $row["kegunaan_sabun"]  ?>&product_harga=<?= $row["harga_sabun"] ?>" class="btn btn-sm text-white bg-danger">Detail</a>
+                <br>
+                <br>
+                <form method="post">
+                  <input type="hidden" name="product_gambar" value="../asset/uploaded-img/<?= $row["gambar_sabun"]; ?>">
+                  <input type="hidden" name="product_nama" value="<?= $row["nama_sabun"]; ?>">
+                  <input type="hidden" name="product_bahan" value="<?= $row["bahan_sabun"]; ?>">
+                  <input type="hidden" name="product_kegunaan" value="<?= $row["kegunaan_sabun"]; ?>">
+                  <input type="hidden" name="product_harga" value="<?= $row["harga_sabun"]; ?>">
+                  <input type="submit" class="btn btn-sm bg-warning" value="Add to Cart" onclick="return confirm('Tambah ke keranjang?')" name="add_to_cart">
+                </form>
+              </td>
             </tr>
             <?php $i++; ?>
-          <?php endforeach;  ?>
-
+          <?php endforeach; ?>
         </table>
       </div>
     </div>
@@ -231,7 +273,7 @@ $row_count = mysqli_num_rows($select_rows);
 </body>
 <!-- Assign PHP id_user value to a JavaScript variable -->
 <script>
-    var id_user = <?php echo $id_user; ?>;
+  var id_user = <?php echo $id_user; ?>;
 </script>
 <script src="../asset/js/jquery-3.6.0.min.js"></script>
 <script src="../asset/js/script.js"></script>
