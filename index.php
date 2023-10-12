@@ -36,6 +36,96 @@ $listsabun = query("SELECT * FROM data_sabun");
   <title>Keira Luxury Soap</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="asset/css/style3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #7ad3a7, #00a4a9);
+    }
+
+    .header {
+      background: #00a4a9;
+      color: #fff;
+    }
+
+    .navbar .nav-link {
+      color: #fff;
+    }
+
+    .navbar .nav-link:hover {
+      color: #fff;
+    }
+
+    .container-xl {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .heading {
+      color: #00a4a9;
+    }
+
+    .sub-heading {
+      color: #00a4a9;
+    }
+
+    .table-bordered,
+    .table-hover,
+    .table-secondary {
+      background-color: #fff;
+    }
+
+    .product-image {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    .custom-button {
+      color: black;
+      background-color: #0DCAF0;
+    }
+
+    .custom-button:hover {
+      background-color: #007982;
+    }
+
+    .gallery {
+      background-color: #fff;
+    }
+
+    .gallery a img {
+      border: 4px solid #fff;
+    }
+
+    .text-dark-50 {
+      color: #555 !important;
+    }
+
+    .footer {
+      background: #00a4a9;
+      color: #fff;
+    }
+
+    .scroll-to-top {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      background: #00a4a9;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 15px;
+    }
+
+    .scroll-to-top:hover {
+      background: #007982;
+    }
+  </style>
 </head>
 
 <body>
@@ -109,18 +199,56 @@ $listsabun = query("SELECT * FROM data_sabun");
         <img src="asset/img/testi4.jpeg" alt="Testimonial 4">
       </a>
     </div>
-
-
   </div>
+  
+  <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">
+    <i class="fa fa-arrow-up"></i>
+  </button>
 
   <!-- Footer Section -->
-  <footer class="mt-auto text-dark-50 text-center">
+  <footer class="footer mt-auto text-dark-50 text-center">
     <p>COPYRIGHT &copy; 2023 <a href="https://keirasoap.site/" class="text-dark">Keira Luxury Soap</a> ALL RIGHTS
       RESERVED.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script>
+    // Function to show the scroll-to-top button when scrolling down
+    window.onscroll = function() {
+      scrollFunction();
+    };
 
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollToTopBtn").style.display = "block";
+      } else {
+        document.getElementById("scrollToTopBtn").style.display = "none";
+      }
+    }
+
+    // Function to smoothly scroll to the top when the button is clicked
+    document.getElementById("scrollToTopBtn").onclick = function() {
+      scrollToTop();
+    };
+
+    function scrollToTop() {
+      const duration = 500; // Scroll duration in milliseconds
+      const start = window.pageYOffset;
+      const startTime = performance.now();
+
+      function scroll(time) {
+        const elapsed = time - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, start - start * progress);
+
+        if (progress < 1) {
+          requestAnimationFrame(scroll);
+        }
+      }
+
+      requestAnimationFrame(scroll);
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
