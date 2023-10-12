@@ -113,7 +113,7 @@ $row_count = mysqli_num_rows($select_rows);
 
     .foto {
       width: auto;
-      height: 50px;
+      height: 100px;
     }
 
     .navbar-white-text .navbar-nav .nav-link {
@@ -129,7 +129,7 @@ $row_count = mysqli_num_rows($select_rows);
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark navbar-white-text">
     <div class="container">
-      <a href="/" class="navbar-brand">Keira Soap Factory</a>
+      <a href="" class="navbar-brand">Keira Soap Factory</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

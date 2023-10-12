@@ -1,5 +1,6 @@
 <?php
 require 'php/functions.php';
+session_start();
 
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];
@@ -16,14 +17,12 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 }
 
 if (isset($_SESSION['login'])) {
-  if ($_SESSION['user'] = true) {
+  if ($_SESSION['user'] == true) {
     header("Location: user/user.php");
-  }
-}
-
-if (isset($_SESSION['login'])) {
-  if ($_SESSION['admin'] = true) {
+    exit(); 
+  } elseif ($_SESSION['admin'] == true) { 
     header("Location: admin/admin.php");
+    exit(); 
   }
 }
 
