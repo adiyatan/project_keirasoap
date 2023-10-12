@@ -10,5 +10,5 @@ setcookie('id', '', time() - 3600, "/");
 setcookie('key', '',time() - 3600, "/");
 
 // mengalihkan halaman ke halaman login
-header("location:../login.php");
+header("location:../index.php");
 ?>
