@@ -19,10 +19,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 if (isset($_SESSION['login'])) {
   if ($_SESSION['user'] == true) {
     header("Location: user/user.php");
-    exit(); 
-  } elseif ($_SESSION['admin'] == true) { 
+    exit();
+  } elseif ($_SESSION['admin'] == true) {
     header("Location: admin/admin.php");
-    exit(); 
+    exit();
   }
 }
 
@@ -32,7 +32,7 @@ $listsabun = query("SELECT * FROM data_sabun");
 <html>
 
 <head>
-  <title>Keira Luxury Soap</title>
+  <title>Adiyatan Luxury Soap</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="asset/css/style3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -131,7 +131,7 @@ $listsabun = query("SELECT * FROM data_sabun");
   <!-- Header Section -->
   <header class="header">
     <div class="container">
-      <h1 class="logo">Keira Luxury Soap</h1>
+      <h1 class="logo">Adiyatan Luxury Soap</h1>
       <nav class="navbar">
         <a class="nav-link" href="#scrollspyHeading1">Products</a>
         <a class="nav-link" href="#scrollspyHeading2">Testimonials</a>
@@ -199,14 +199,14 @@ $listsabun = query("SELECT * FROM data_sabun");
       </a>
     </div>
   </div>
-  
+
   <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">
     <i class="fa fa-arrow-up"></i>
   </button>
 
   <!-- Footer Section -->
   <footer class="footer mt-auto text-dark-50 text-center">
-    <p>COPYRIGHT &copy; 2023 <a href="https://keirasoap.site/" class="text-dark">Keira Luxury Soap</a> ALL RIGHTS
+    <p>COPYRIGHT &copy; 2023 <a href="https://Adiyatansoap.site/" class="text-dark">Adiyatan Luxury Soap</a> ALL RIGHTS
       RESERVED.</p>
   </footer>
 

@@ -18,10 +18,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 if (isset($_SESSION['login'])) {
   if ($_SESSION['user'] == true) {
     header("Location: user/user.php");
-    exit(); 
-  } elseif ($_SESSION['admin'] == true) { 
+    exit();
+  } elseif ($_SESSION['admin'] == true) {
     header("Location: admin/admin.php");
-    exit(); 
+    exit();
   }
 }
 
@@ -40,7 +40,7 @@ if (isset($_POST['register'])) {
 <html>
 
 <head>
-  <title>Register for Keira Health Portal</title>
+  <title>Register for Adiyatan Health Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <style>
     body {
@@ -110,7 +110,7 @@ if (isset($_POST['register'])) {
 
 <body>
   <div class="panel_login">
-    <p class="tulisan_atas fs-2">Register for Keira Health Portal</p>
+    <p class="tulisan_atas fs-2">Register for Adiyatan Health Portal</p>
     <form action="" method="post">
       <div class="form-floating mb-5">
         <input type="text" class="form-control fs-5" id="floatingInput" placeholder="Full Name" name="nama_user" style="height: 50px" required autocomplete="off">

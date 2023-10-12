@@ -19,10 +19,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 if (isset($_SESSION['login'])) {
   if ($_SESSION['user'] == true) {
     header("Location: user/user.php");
-    exit(); 
-  } elseif ($_SESSION['admin'] == true) { 
+    exit();
+  } elseif ($_SESSION['admin'] == true) {
     header("Location: admin/admin.php");
-    exit(); 
+    exit();
   }
 }
 
@@ -31,7 +31,7 @@ if (isset($_SESSION['login'])) {
 <html>
 
 <head>
-  <title>Login to Keira Health Portal</title>
+  <title>Login to Adiyatan Health Portal</title>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <style>
@@ -103,7 +103,7 @@ if (isset($_SESSION['login'])) {
 <body>
 
   <div class="panel_login">
-    <p class="tulisan_atas">Welcome to Keira Health Portal</p>
+    <p class="tulisan_atas">Welcome to Adiyatan Health Portal</p>
 
     <?php
     if (isset($_GET['pesan']) && $_GET['pesan'] == "gagal") {

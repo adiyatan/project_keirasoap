@@ -148,7 +148,7 @@ $row_count = mysqli_num_rows($select_rows);
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark navbar-white-text">
     <div class="container">
-      <a href="" class="navbar-brand">Keira Soap Factory</a>
+      <a href="" class="navbar-brand">Adiyatan Soap Factory</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -199,7 +199,7 @@ $row_count = mysqli_num_rows($select_rows);
   </div>
   <div class="container-xl mt-3">
     <h1>Daftar Sabun Kesehatan</h1>
-    <p>Oleh Keira Soap Factory</p>
+    <p>Oleh Adiyatan Soap Factory</p>
     <!-- Your table code here -->
     <div class="row">
       <div class="col-md-3">
@@ -289,7 +289,7 @@ $row_count = mysqli_num_rows($select_rows);
   </button>
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2023 Keira Soap Factory</p>
+      <p>&copy; 2023 Adiyatan Soap Factory</p>
     </div>
   </footer>
 </body>
