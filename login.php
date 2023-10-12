@@ -15,7 +15,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   }
 }
 
-if(isset($_SESSION['login'])){
+if (isset($_SESSION['login'])) {
   if ($_SESSION['user'] = true) {
     header("Location: user/user.php");
   }
@@ -27,65 +27,121 @@ if (isset($_SESSION['login'])) {
   }
 }
 
- ?>
+?>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Login Keira SoapFactory</title>
-        <link rel="stylesheet" type="text/css" href="asset/css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="asset/css/style.css">
-    </head>
-    <body>
-        
-        <nav id="navbar-example2" class="navbar navbar-light bg-info px-3 fs-3">
-          <a class="navbar-brand fs-2 text-center" href="#">Keira Soap Factory</a>
-          <ul class="nav nav-pills fs-2 text-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php#scrollspyHeading1" style="color:black;">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="registrasi.php" style="color:black;">Registrasi</a>
-            </li>
-          </ul>
-        </nav> 
 
-<?php 
+<head>
+  <title>Login to Keira Health Portal</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #7ad3a7, #00a4a9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
- if(isset($_GET['pesan'])){
-  if($_GET['pesan']=="gagal"){
-   echo "<div class='alert'>Username dan Password Salah !</div>";
-  }
- }
- ?>   
-        <div class="panel_login fs-2">
-            <p class="tulisan_atas">Silahkan Masuk</p>
+    .panel_login {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+      width: 400px;
+      text-align: center;
+    }
 
-            <form action="php/checkrole.php" method="post">
+    .alert {
+      background-color: #f2dede;
+      color: #a94442;
+      border: 1px solid #a94442;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
 
-            <div class="form-floating mb-5">
-            <input type="text" class="form-control fs-3" id="floatingInput" placeholder="Username" name="username" style="height: 50px" required autocomplete="off">
-            <label for="floatingInput">Username :</label>
-            </div>
+    .tulisan_atas {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00a4a9;
+      margin-bottom: 20px;
+    }
 
-             <div class="form-floating mb-5">
-            <input type="password" class="form-control fs-3" id="floatingInput" placeholder="Username" name="password" style="height: 50px" required autocomplete="off">
-            <label for="floatingInput">Password :</label>
-            </div>
+    .form-control {
+      background-color: #f2f2f2;
+      border: none;
+      height: 50px;
+      border-radius: 5px;
+    }
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="remember" name="remember">
-              <label class="form-check-label" for="remember">
-                Login selama 30 hari
-              </label>
-            </div> <br>
+    .form-floating label {
+      color: #00a4a9;
+    }
 
-            <input type="submit" class="tombol_login" name="login" value="LOGIN" style="color:black; background-color: #0DCAF0;">
-            <br/>
-            <br/>
-            </form>
-        </div>
+    .form-check-label {
+      color: #333;
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    .tombol_login {
+      background-color: #00a4a9;
+      color: #fff;
+      border: none;
+      height: 50px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-    </body>
+    .tombol_login:hover {
+      background-color: #007982;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="panel_login">
+    <p class="tulisan_atas">Welcome to Keira Health Portal</p>
+
+    <?php
+    if (isset($_GET['pesan']) && $_GET['pesan'] == "gagal") {
+      echo "<div class='alert'>Username and Password are incorrect.</div>";
+    }
+    ?>
+
+    <form action="php/checkrole.php" method="post">
+      <div class="form-floating mb-5">
+        <input type="text" class="form-control fs-3" id="floatingInput" placeholder="Username" name="username" required autocomplete="off">
+        <label for="floatingInput">Username:</label>
+      </div>
+
+      <div class="form-floating mb-5">
+        <input type="password" class="form-control fs-3" id="floatingPassword" placeholder="Password" name="password" required autocomplete="off">
+        <label for="floatingPassword">Password:</label>
+      </div>
+
+      <p style="margin-right: 120px; margin-top: 10px;"> Don't have an account? <a href="registrasi.php" style="color: #00a4a9; font-weight: bold;">Register</a>
+      </p>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="remember" name="remember">
+        <label class="form-check-label" for="remember" style="margin-right: 130px;">
+          Remember me for 30 days
+        </label>
+      </div>
+      <br>
+
+      <input type="submit" class="tombol_login" name="login" value="LOGIN">
+      <br />
+      <br />
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
 </html>

@@ -20,6 +20,9 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 $username = mysqli_real_escape_string($conn,$_POST['username']);
 $password = mysqli_real_escape_string($conn,$_POST['password']);
 
+$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+$password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
+
 
 $login = mysqli_query($conn,"SELECT * FROM user WHERE username='$username'");
 $cek = mysqli_num_rows($login);
