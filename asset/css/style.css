@@ -1,0 +1,20 @@
+/* asset/css/style3.css */
+
+/* Style the body background and font */
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the navbar */
+.navbar {
+    background-color: #0DCAF0;
+    color: black;
+}
+
+/* Style the links in the navbar */
+.navbar a {
+    color: black;
+}
+
+/* Add more styles to other elements as needed */
