@@ -1,6 +1,2 @@
-Keira Soap Factory merupakan menyedia sabun homemade yang membantu seluruh permasalahan kulit anda,
-website ini dibuat untuk menyelesaikan tugas besar dari pemograman web
-
-web hosting : keirasoap.site (semua data sudah di backup, dan setelah di hosting admin akan di hapus)/ https://keirasoap.stagingcae.website/login.php (link backup)
-tersedia 2 akses, untuk admin bisa login menggunakan user : tubes, pw: tubesadiya
-dan untuk user bisa menggunakan halaman registrasi
+ini merupakan portfolio adiya tanaya permana, project ini bertujuan membuat tampilan yang lebih bagus dari versi pertama..
+versi pertama bisa di akses di = https://github.com/adiyatan/pw2022_c_213040088/tree/main/tubes
