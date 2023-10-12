@@ -7,13 +7,12 @@ $(document).ready(function() {
         // munculkan icon loading
         $('.loader').show();
 
-        $.get('../asset/ajax/sabun.php?keyword=' + $('#keyword').val(), function(data) {
+        // Use the id_user JavaScript variable
+        $.get('../asset/ajax/sabun.php?keyword=' + $('#keyword').val() + '&id_user=' + id_user, function(data) {
 
             $('#tabel-sabun').html(data);
             $('.loader').hide();
 
         });
-
     });
-
 });
