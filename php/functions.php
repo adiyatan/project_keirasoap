@@ -1,28 +1,31 @@
 <?php
-$conn = mysqli_connect("localhost","root","","keirasoap") or die('Connections_failed');
+$conn = mysqli_connect("localhost", "root", "", "keirasoap") or die('Connections_failed');
 
 
-function query($query) {
+function query($query)
+{
 	global $conn;
 	$result = mysqli_query($conn, $query);
 	$rows = [];
-	while( $row = mysqli_fetch_assoc($result) ) {
+	while ($row = mysqli_fetch_assoc($result)) {
 		$rows[] = $row;
 	}
 	return $rows;
 }
 
-function queryorder($query) {
+function queryorder($query)
+{
 	global $conn;
 	$result = mysqli_query($conn, $query);
 	$rows = [];
-	while( $row = mysqli_fetch_assoc($result) ) {
+	while ($row = mysqli_fetch_assoc($result)) {
 		$rows[] = $row;
 	}
 	return $rows;
 }
 
-function tambah($data) {
+function tambah($data)
+{
 	global $conn;
 	//ambil data dari tiap elemen dalam form
 	$nama_sabun = htmlspecialchars($data["nama_sabun"]);
@@ -35,29 +38,30 @@ function tambah($data) {
 		return false;
 	}
 
-	 //query insert data
-	 $query = "INSERT INTO data_sabun
+	//query insert data
+	$query = "INSERT INTO data_sabun
 				VALUES
 				 ('', '$nama_sabun', '$bahan_sabun', '$kegunaan_sabun', '$harga_sabun', '$gambar_sabun')";
 	mysqli_query($conn, $query);
 
 	return mysqli_affected_rows($conn);
-
 }
 
-function hapus($id_sabun) {
+function hapus($id_sabun)
+{
 	global $conn;
 
 	$sabun = query("SELECT * FROM data_sabun WHERE id_sabun = $id_sabun")[0];
 	if ($sabun["gambar_sabun"] !== 'adiya.jpg') {
-	unlink("../asset/uploaded-img/". $sabun["gambar_sabun"]);
+		unlink("../asset/uploaded-img/" . $sabun["gambar_sabun"]);
 	}
 
 	mysqli_query($conn, "DELETE FROM data_sabun WHERE id_sabun = $id_sabun");
 	return mysqli_affected_rows($conn);
 }
 
-function ubah($data) {
+function ubah($data)
+{
 	global $conn;
 
 	$id_sabun = $data["id_sabun"];
@@ -66,9 +70,9 @@ function ubah($data) {
 	$kegunaan_sabun = htmlspecialchars($data["kegunaan_sabun"]);
 	$harga_sabun = htmlspecialchars($data["harga_sabun"]);
 	$gambar_sabun = htmlspecialchars($data["gambar_sabun"]);
-	
+
 	// cek apakah user pilih gambar baru atau tidak
-	if( $_FILES['gambar_sabun']['error'] === 4 ) {
+	if ($_FILES['gambar_sabun']['error'] === 4) {
 		$gambar_soap = $gambar_sabun;
 	} else {
 		$gambar_soap = upload();
@@ -86,10 +90,11 @@ function ubah($data) {
 
 	mysqli_query($conn, $query);
 
-	return mysqli_affected_rows($conn);	
+	return mysqli_affected_rows($conn);
 }
 
-function ubahorder($data) {
+function ubahorder($data)
+{
 	global $conn;
 
 	$id_sabun = $data["id_sabun"];
@@ -98,9 +103,9 @@ function ubahorder($data) {
 	$kegunaan_sabun = htmlspecialchars($data["kegunaan_sabun"]);
 	$harga_sabun = htmlspecialchars($data["harga_sabun"]);
 	$gambar_sabun = htmlspecialchars($data["gambar_sabun"]);
-	
+
 	// cek apakah user pilih gambar baru atau tidak
-	if( $_FILES['gambar_sabun']['error'] === 4 ) {
+	if ($_FILES['gambar_sabun']['error'] === 4) {
 		$gambar_soap = $gambar_sabun;
 	} else {
 		$gambar_soap = upload();
@@ -118,18 +123,19 @@ function ubahorder($data) {
 
 	mysqli_query($conn, $query);
 
-	return mysqli_affected_rows($conn);	
+	return mysqli_affected_rows($conn);
 }
 
 
-function upload() {
+function upload()
+{
 	$namaFile_sabun = $_FILES['gambar_sabun']['name'];
 	$ukuranFile_sabun = $_FILES['gambar_sabun']['size'];
 	$error_sabun = $_FILES['gambar_sabun']['error'];
 	$tmpName_sabun = $_FILES['gambar_sabun']['tmp_name'];
 
 	// cek apakah tidak ada gambar yang diupload
-	if( $error_sabun === 4 ) {
+	if ($error_sabun === 4) {
 		echo "<script>
 				alert('pilih gambar terlebih dahulu!');
 			  </script>";
@@ -140,7 +146,7 @@ function upload() {
 	$ekstensiGambarValid_sabun = ['jpg', 'jpeg', 'png'];
 	$ekstensiGambar_sabun = explode('.', $namaFile_sabun);
 	$ekstensiGambar_sabun = strtolower(end($ekstensiGambar_sabun));
-	if( !in_array($ekstensiGambar_sabun, $ekstensiGambarValid_sabun) ) {
+	if (!in_array($ekstensiGambar_sabun, $ekstensiGambarValid_sabun)) {
 		echo "<script>
 				alert('yang anda upload bukan gambar!');
 			  </script>";
@@ -148,7 +154,7 @@ function upload() {
 	}
 
 	// cek jika ukurannya terlalu besar
-	if( $ukuranFile_sabun > 1000000 ) {
+	if ($ukuranFile_sabun > 1000000) {
 		echo "<script>
 				alert('ukuran gambar terlalu besar!');
 			  </script>";
@@ -166,7 +172,8 @@ function upload() {
 	return $namaFileBaru_sabun;
 }
 
-function registrasi($data) {
+function registrasi($data)
+{
 	global $conn;
 
 	$nama_user = htmlspecialchars(ucwords($data["nama_user"]));
@@ -223,38 +230,64 @@ function registrasi($data) {
 	return mysqli_affected_rows($conn);
 }
 
-function profile($data){
-	global $conn;
+function profile($data)
+{
+    global $conn;
 
-	$id_user = $data["id_user"];
-	$update_name = ucwords(mysqli_real_escape_string($conn, $_POST['update_name']));
-   $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
-   $update_phone = mysqli_real_escape_string($conn, $_POST['update_phone']);
-   $update_alamat = ucwords(mysqli_real_escape_string($conn, $_POST['update_alamat']));
-   $update_postcode = ucwords(mysqli_real_escape_string($conn, $_POST['update_postcode']));
-   $update_kota = ucwords(mysqli_real_escape_string($conn, $_POST['update_kota']));
-   $update_provinsi = ucwords(mysqli_real_escape_string($conn, $_POST['update_provinsi']));
+    $id_user = mysqli_real_escape_string($conn, $data["id_user"]);
+    $update_name = ucwords(mysqli_real_escape_string($conn, $data['update_name']));
+    $update_email = mysqli_real_escape_string($conn, $data['update_email']);
+    $update_phone = mysqli_real_escape_string($conn, $data['update_phone']);
+    $update_alamat = ucwords(mysqli_real_escape_string($conn, $data['update_alamat']));
+    $update_postcode = ucwords(mysqli_real_escape_string($conn, $data['update_postcode']));
+    $update_kota = ucwords(mysqli_real_escape_string($conn, $data['update_kota']));
+    $update_provinsi = ucwords(mysqli_real_escape_string($conn, $data['update_provinsi']));
 
+    // Gunakan prepared statement untuk menghindari SQL injection
+    $update_query = $conn->prepare("UPDATE `user` SET nama_user = ?, email_user = ?, nomor_user = ?, alamat_user = ?, postcode_user = ?, kota_user = ?, provinsi = ? WHERE id = ?");
+    $update_query->bind_param("sssssssi", $update_name, $update_email, $update_phone, $update_alamat, $update_postcode, $update_kota, $update_provinsi, $id_user);
 
-   mysqli_query($conn, "UPDATE `user` SET nama_user = '$update_name', email_user = '$update_email', nomor_user ='$update_phone', alamat_user = '$update_alamat',postcode_user = '$update_postcode', kota_user = '$update_kota', provinsi = '$update_provinsi' WHERE id = '$id_user'") or die('query failed');
+    if ($update_query->execute()) {
+        // Query berhasil dieksekusi
+    } else {
+        // Query gagal
+        die('Query failed');
+    }
 
+    $update_image = $_FILES['update_image']['name'];
+    $update_image_size = $_FILES['update_image']['size'];
+    $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+    $update_image_folder = '../asset/uploaded-img/' . $update_image;
 
+    if (!empty($update_image)) {
+        if ($update_image_size > 2000000) {
+            // Gambar terlalu besar
+            $message[] = 'Image is too large';
+        } else {
+            // Validasi tipe file gambar
+            $allowed_image_types = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF);
+            $image_type = exif_imagetype($update_image_tmp_name);
 
-   $update_image = $_FILES['update_image']['name'];
-   $update_image_size = $_FILES['update_image']['size'];
-   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-   $update_image_folder = '../asset/uploaded-img/'.$update_image;
+            if (in_array($image_type, $allowed_image_types)) {
+                $image_update_query = $conn->prepare("UPDATE `user` SET gambar_user = ? WHERE id = ?");
+                $image_update_query->bind_param("si", $update_image, $id_user);
 
-   if(!empty($update_image)){
-      if($update_image_size > 2000000){
-         $message[] = 'image is too large';
-      }else{
-         $image_update_query = mysqli_query($conn, "UPDATE `user` SET gambar_user = '$update_image' WHERE id = '$id_user'") or die('query failed');
-         if($image_update_query){
-            move_uploaded_file($update_image_tmp_name, $update_image_folder);
-         }
-         $message[] = 'image updated succssfully!';
-      }
-   }
-   return mysqli_affected_rows($conn);
+                if ($image_update_query->execute()) {
+                    // Pindahkan file gambar
+                    if (move_uploaded_file($update_image_tmp_name, $update_image_folder)) {
+                        $message[] = 'Image updated successfully!';
+                    } else {
+                        $message[] = 'Failed to move uploaded file';
+                    }
+                } else {
+                    $message[] = 'Failed to update image in database';
+                }
+            } else {
+                $message[] = 'Invalid image file type';
+            }
+        }
+    }
+
+    return mysqli_affected_rows($conn);
 }
+
