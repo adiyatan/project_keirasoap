@@ -58,6 +58,7 @@ $row_count = mysqli_num_rows($select_rows);
 
     .navbar {
       background: #00a4a9;
+      padding: 25px 180px;
     }
 
     .container-xl {
