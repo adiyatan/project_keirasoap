@@ -70,7 +70,9 @@ $row_count = mysqli_num_rows($select_rows);
       }
 
       body {
+         background: linear-gradient(to bottom, #7ad3a7, #00a4a9);
          font-family: 'Arial', sans-serif;
+         height: 100vh;
       }
 
       .container {
